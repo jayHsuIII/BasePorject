@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="BaseDataBaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="BaseDataBaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Sys_Member">
           <Key>
             <PropertyRef Name="PID" />
@@ -13,12 +13,13 @@
           <Property Name="UserID" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Birthday" Type="datetime" />
+          <Property Name="UserChName" Type="nvarchar" MaxLength="10" />
         </EntityType>
         <EntityContainer Name="BaseDataBaseModelStoreContainer">
           <EntitySet Name="Sys_Member" EntityType="Self.Sys_Member" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BaseDataBaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -30,6 +31,8 @@
           <Property Name="UserID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Birthday" Type="DateTime" Precision="3" />
+          <Property Name="UserChName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityContainer Name="BaseDataBaseEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Sys_Member" EntityType="Self.Sys_Member" />
@@ -43,6 +46,8 @@
           <EntitySetMapping Name="Sys_Member">
             <EntityTypeMapping TypeName="BaseDataBaseModel.Sys_Member">
               <MappingFragment StoreEntitySet="Sys_Member">
+                <ScalarProperty Name="UserChName" ColumnName="UserChName" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
                 <ScalarProperty Name="PID" ColumnName="PID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
